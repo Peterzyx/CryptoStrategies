@@ -1,2 +1,4 @@
 Data/Kaggle/*
-
+__pycache__
+.ipynb_checkpoints
+Playground/Peter/.ipynb_checkpoints/ProcessData-checkpoint.ipynb
