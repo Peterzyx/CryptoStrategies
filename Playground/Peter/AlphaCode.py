@@ -757,7 +757,9 @@ class Alphas(object):
     # Alpha#85	 (rank(correlation(((high * 0.876703) + (close * (1 - 0.876703))), adv30,9.61331))^rank(correlation(Ts_Rank(((high + low) / 2), 3.70596), Ts_Rank(volume, 10.1595),7.11408)))
     def alpha085(self):
         adv30 = sma(self.volume, 30)
-        return (rank(correlation(((self.high * 0.876703) + (self.close * (1 - 0.876703))), adv30, 10)).pow(rank(correlation(ts_rank(((self.high + self.low) / 2), 4), ts_rank(self.volume, 10),7))))
+        n1 = correlation(((self.high * 0.876703) + (self.close * (1 - 0.876703))), adv30, 10)
+        n2 = correlation(ts_rank(((self.high + self.low) / 2), 4), ts_rank(self.volume, 10),7).fillna(value=0)
+        return (rank(n1).pow(rank(n2)))
     
     # Alpha#86	 ((Ts_Rank(correlation(close, sum(adv20, 14.7444), 6.00049), 20.4195) < rank(((open+ close) - (vwap + open)))) * -1)
     def alpha086(self):
